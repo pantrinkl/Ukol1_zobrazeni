@@ -2,9 +2,12 @@ import turtle
 import math
 from turtle import exitonclick, setpos, pendown, penup, speed
 from math import log, cos, radians, tan, sin, cos, acos
+# definice funkce lambertova valcoveho zobrazeni
 def Lv(m,n,R):
+    # spocteni uzivatelova bodu
     delka = R*radians(m)
     sirka = R*sin(radians(n))
+    # vykresleni site
     k = range(-90,100,10)
     l = range(-180,190,10)
     speed(0)
@@ -22,9 +25,9 @@ def Lv(m,n,R):
             setpos(R*radians(j),R*sin(radians(i)))
     exitonclick()
     return delka, sirka
+# definice funkce gnomonicke projekce
 def Gn(m,n,R):
-    k = range(10,100,10)
-    l = range(-180,190,10)
+    # vypocteni bodu uzivatele
     def p(j):
         c = R*tan((radians(90-j)))
         return c
@@ -32,6 +35,9 @@ def Gn(m,n,R):
         return radians(j)
     delka = p(n)*cos(e(m))
     sirka = p(n)*sin(e(m))
+    # vykresleni site
+    k = range(10,100,10)
+    l = range(-180,190,10)
     speed(0)
     for j in k:
         penup()
@@ -47,9 +53,9 @@ def Gn(m,n,R):
             setpos(p(i)*cos(e(j)),p(i)*sin(e(j)))
     exitonclick()
     return delka, sirka
+# definice funkce ptolemaiova zobrazeni
 def Pt(m,n,R):
-    k = range(-90,100,10)
-    l = range(-180,190,10)
+    # spocteni bodu uzivatele
     def p(j):
         h = R*(1/tan(radians(30)))+R*(radians(30-j))
         return h
@@ -58,6 +64,9 @@ def Pt(m,n,R):
         return h
     delka = radians(30)-p(n)*cos(e(m))
     sirka = p(n)*sin(e(m))
+    # vykresleni site
+    k = range(-90,100,10)
+    l = range(-180,190,10)
     speed(0)
     for j in k:
         penup()
@@ -73,9 +82,12 @@ def Pt(m,n,R):
             setpos(radians(30)-p(i)*cos(e(j)),p(i)*sin(e(j)))
     exitonclick()
     return delka, sirka
+# definice sansonova zobrazeni
 def Sa(m,n,R):
+    # vypocteni bodu uzivatele
     delka = R*radians(m)*cos(radians(n))
     sirka = R*radians(m)
+    # vykresleni site
     k = range(-90,100,10)
     l = range(-180,190,10)
     speed(0)
@@ -93,14 +105,17 @@ def Sa(m,n,R):
             setpos(R*radians(j)*cos(radians(i)),R*radians(i))
     exitonclick()
     return delka, sirka
+# nacteni zobrazeni
 zob = str(input("Zadej zobrazení (buď Sa, Lv, Gn, Pt):"))
 sezzob = {"Sa","Lv","Gn","Pt"}
 if zob not in sezzob:
     print("Neexistující zobrazení.")
     quit()
+# nacteni meritka a uprava polomeru dle meritka
 meritko = int(input("Zadej měřítko:"))
 R = 6371100/0.0003
 R = R/meritko
+# nacteni delky a sirky prepocitavaneho bodu
 m = float(input("Zadej zeměpisnou délku ve stupních:"))
 if abs(m) > 180:
     print("Tento úhel nepřipadá v úvahu.")
@@ -109,6 +124,7 @@ n = float(input("Zadej zeměpisnou šířku ve stupních:"))
 if abs(n) > 90:
     print("Tento úhel nepřipadá v úvahu.")
     quit()
+# vypocet bodu a vykresleni site
 if zob == "Sa":
     delka, sirka = Sa(m,n,R)
 if zob == "Lv":
