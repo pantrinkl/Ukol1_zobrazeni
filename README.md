@@ -17,7 +17,7 @@ Pro jednotlivá zobrazení zadejte zkratky:
 * Ptolemaiovo zobrazení: `Pt`
 
 ### Měřítko
-Zadejte měříko, ve kterém se zobrazí výkres zobrazení. Například pro měřítko 1:5000000 zadejte `5000000`. 
+Zadejte měříko, ve kterém se zobrazí výkres zobrazení. Například pro měřítko 1:5 000 000 zadejte `5000000`. 
 Doporučené měřítko pro zemi s opravdovým poloměrem je mezi 1:5 000 000 až 1:50 000 000. 
 
 ### Poloměr země
