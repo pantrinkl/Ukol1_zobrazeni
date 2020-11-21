@@ -9,12 +9,12 @@ Dále vypočítá souřadnice libovolně zvoleného bodu v daném zobrazení.
 
 ### Zobrazení
 Pro jednotlivá zobrazení zadejte zkratky:
-*Gnomonická projekce: `Gn`
-*Postelovo zobrazení: `Po`
-*Lambertovo válcové zobrazení: `Lv`
-*Marinovo zobrazení: `Ma`
-*Sansonovo zobrazení: `Sa`
-*Ptolemaiovo zobrazení: `Pt`
+* Gnomonická projekce: `Gn`
+* Postelovo zobrazení: `Po`
+* Lambertovo válcové zobrazení: `Lv`
+* Marinovo zobrazení: `Ma`
+* Sansonovo zobrazení: `Sa`
+* Ptolemaiovo zobrazení: `Pt`
 
 ### Měřítko
 Zadejte měříko, ve kterém se zobrazí výkres zobrazení. Například pro měřítko 1:5000000 zadejte `5000000`. 
