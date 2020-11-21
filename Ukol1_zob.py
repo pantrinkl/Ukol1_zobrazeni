@@ -1,7 +1,11 @@
+# import jiz preddefinovanych funkci
+
 import turtle
 import math
 from turtle import exitonclick, setpos, pendown, penup, speed
 from math import log, cos, radians, tan, sin, cos, acos
+
+# definice vlastnich funkci
 
 # vypocet uzivatelova bodu v lambertove valcovem zobrazeni
 def Lv_bod(d,s,R):
@@ -157,9 +161,8 @@ def Sa_bod(d,s,R):
     sirka = R*radians(s)
     return delka, sirka
 
-# definice sansonova zobrazeni
+# vykresleni site sansonova zobrazeni
 def Sa(pol,rov,R):
-    # vykresleni site
     k = range(-90,91,rov)
     l = range(-180,181,pol)
     speed(0)
@@ -176,7 +179,8 @@ def Sa(pol,rov,R):
         for i in k:
             setpos(R*radians(j)*cos(radians(i)),R*radians(i))
 
-# samotny program
+# hlavni program
+
 # nacteni zobrazeni
 zob = str(input("Zadej zobrazení (buď Sa, Lv, Gn, Pt, Po, Ma):"))
 sezzob = {"Sa","Lv","Gn","Pt","Po","Ma"}
@@ -225,7 +229,7 @@ elif rov > 80 and zob == "Gn":
     quit()
 elif rov == 0:
     rov = 10
-# vypocet bodu a vykresleni site
+# vypocet bodu a vykresleni site dle zadani uzivatele
 if zob == "Sa":
     Sa(pol,rov,R)
     delka, sirka = Sa_bod(d,s,R)
@@ -247,5 +251,5 @@ if zob == "Po":
 if zob == "Ma":
     Ma(pol,rov,R)
     delka, sirka = Ma_bod(d,s,R)
-print("Pro tvůj bod je souřadnice x:",delka,"a souřadnice y:",sirka)
+print("Pro zvolený bod je souřadnice x:",delka,"a souřadnice y:",sirka)
 exitonclick()
