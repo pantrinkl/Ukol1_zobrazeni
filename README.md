@@ -30,7 +30,7 @@ Délku a šířku libovolného bodu zadávejte ve stupních. Pokud vás napřík
 Program umožňuje zadat po kolika stupních se budou vykreslovat rovnoběžky a poledníky. Hodnotu zadávejte v celých stupních. Pokud je zadána hodnota `0`, tak je vykreslována síť po 10 stupních. 
 
 ## Výstup
-Program vykreslí síť daného geografického zobrazení / geografické projekce pomocí modulu `turtle`. Dále vypíše hodnoty x a y pro libovolný bod v terminálu.
+Program vykreslí síť daného geografického zobrazení / geografické projekce pomocí modulu `turtle`. Dále vypíše hodnoty x a y pro zvolený bod v terminálu.
 Pro zavření vykreslené sítě do ní stačí kliknout.
 
-Na [stránce úkolu](https://github.com/xtompok/uvod-do-prg_20/tree/master/du01) se lze dozvědět více podrobností.
+Na [stránce úkolu](https://github.com/xtompok/uvod-do-prg_20/tree/master/du01) se lze dozvědět zadání úkolu.
