@@ -2,12 +2,15 @@ import turtle
 import math
 from turtle import exitonclick, setpos, pendown, penup, speed
 from math import log, cos, radians, tan, sin, cos, acos
-# definice funkce lambertova valcoveho zobrazeni
-def Lv(m,n,R):
-    # spocteni uzivatelova bodu
-    delka = R*radians(m)
-    sirka = R*sin(radians(n))
-    # vykresleni site
+
+# vypocet uzivatelova bodu v lambertove valcovem zobrazeni
+def Lv_bod(d,s,R):
+    delka = R*radians(d)
+    sirka = R*sin(radians(s))
+    return delka, sirka
+
+# vykresleni site lambertova valcoveho zobrazeni
+def Lv(R):
     k = range(-90,100,10)
     l = range(-180,190,10)
     speed(0)
@@ -23,70 +26,82 @@ def Lv(m,n,R):
         pendown()
         for i in k:
             setpos(R*radians(j),R*sin(radians(i)))
-    exitonclick()
+
+# vypocet sirky gnomonicke projekci 
+def p_gn(s,R):
+    c = R*tan((radians(90-s)))
+    return c
+
+# vypocet delky v gnom. projekci
+def e_gn(d):
+    return radians(d)
+
+# vypocet uzivatelova bodu v gnom. projekci 
+def Gn_bod(d,s,R):
+    delka = p_gn(s,R)*cos(e_gn(d))
+    sirka = p_gn(s,R)*sin(e_gn(d))
     return delka, sirka
-# definice funkce gnomonicke projekce
-def Gn(m,n,R):
-    # vypocteni bodu uzivatele
-    def p(j):
-        c = R*tan((radians(90-j)))
-        return c
-    def e(j):
-        return radians(j)
-    delka = p(n)*cos(e(m))
-    sirka = p(n)*sin(e(m))
-    # vykresleni site
+
+# vykresleni site gnomonicke projekce
+def Gn(R):
     k = range(10,100,10)
     l = range(-180,190,10)
     speed(0)
     for j in k:
         penup()
-        setpos(p(j)*cos(e(-180)),p(j)*sin(e(-180)))
+        setpos(p_gn(j,R)*cos(e_gn(-180)),p_gn(j,R)*sin(e_gn(-180)))
         pendown()
         for i in l:
-            setpos(p(j)*cos(e(i)),p(j)*sin(e(i)))
+            setpos(p_gn(j,R)*cos(e_gn(i)),p_gn(j,R)*sin(e_gn(i)))
     for j in l:
         penup()
-        setpos(p(10)*cos(e(j)),p(10)*sin(e(j)))
+        setpos(p_gn(10,R)*cos(e_gn(j)),p_gn(10,R)*sin(e_gn(j)))
         pendown()
         for i in k:
-            setpos(p(i)*cos(e(j)),p(i)*sin(e(j)))
-    exitonclick()
+            setpos(p_gn(i,R)*cos(e_gn(j)),p_gn(i,R)*sin(e_gn(j)))
+
+# vypocet sirky v ptolemaiove zobrazeni
+def p_pt(s,R):
+    h = R*(1/tan(radians(30)))+R*(radians(30-s))
+    return h
+
+# vypocet delky v ptolemaiove zobrazeni
+def e_pt(d):
+    h = radians(d)*sin(radians(30))
+    return h
+
+# vypocet uzivatelova bodu v ptolemaiove zobrazeni
+def Pt_bod(d,s,R):
+    delka = radians(30)-p_pt(s,R)*cos(e_pt(d))
+    sirka = p_pt(s,R)*sin(e_pt(d))
     return delka, sirka
-# definice funkce ptolemaiova zobrazeni
-def Pt(m,n,R):
-    # spocteni bodu uzivatele
-    def p(j):
-        h = R*(1/tan(radians(30)))+R*(radians(30-j))
-        return h
-    def e(j):
-        h = radians(j)*sin(radians(30))
-        return h
-    delka = radians(30)-p(n)*cos(e(m))
-    sirka = p(n)*sin(e(m))
-    # vykresleni site
+
+# vykresleni site ptolemaiova zobrazeni
+def Pt(R):
     k = range(-90,100,10)
     l = range(-180,190,10)
     speed(0)
     for j in k:
         penup()
-        setpos(radians(30)-p(j)*cos(e(-180)),p(j)*sin(e(-180)))
+        setpos(radians(30)-p_pt(j,R)*cos(e_pt(-180)),p_pt(j,R)*sin(e_pt(-180)))
         pendown()
         for i in l:
-            setpos(radians(30)-p(j)*cos(e(i)),p(j)*sin(e(i)))
+            setpos(radians(30)-p_pt(j,R)*cos(e_pt(i)),p_pt(j,R)*sin(e_pt(i)))
     for j in l:
         penup()
-        setpos(radians(30)-p(-90)*cos(e(j)),p(-90)*sin(e(j)))
+        setpos(radians(30)-p_pt(-90,R)*cos(e_pt(j)),p_pt(-90,R)*sin(e_pt(j)))
         pendown()
         for i in k:
-            setpos(radians(30)-p(i)*cos(e(j)),p(i)*sin(e(j)))
-    exitonclick()
+            setpos(radians(30)-p_pt(i,R)*cos(e_pt(j)),p_pt(i,R)*sin(e_pt(j)))
+
+# vypocet uzivatelova bodu v sansonove zobrazeni
+def Sa_bod(d,s,R):
+    delka = R*radians(d)*cos(radians(s))
+    sirka = R*radians(s)
     return delka, sirka
+
 # definice sansonova zobrazeni
-def Sa(m,n,R):
-    # vypocteni bodu uzivatele
-    delka = R*radians(m)*cos(radians(n))
-    sirka = R*radians(m)
+def Sa(R):
     # vykresleni site
     k = range(-90,100,10)
     l = range(-180,190,10)
@@ -103,8 +118,8 @@ def Sa(m,n,R):
         pendown()
         for i in k:
             setpos(R*radians(j)*cos(radians(i)),R*radians(i))
-    exitonclick()
-    return delka, sirka
+
+# samotny program
 # nacteni zobrazeni
 zob = str(input("Zadej zobrazení (buď Sa, Lv, Gn, Pt):"))
 sezzob = {"Sa","Lv","Gn","Pt"}
@@ -113,27 +128,44 @@ if zob not in sezzob:
     quit()
 # nacteni meritka a uprava polomeru dle meritka
 meritko = int(input("Zadej měřítko:"))
-R = 6371100/0.0003
+if meritko <= 0:
+    print("Špatně zadané měřítko")
+    quit()
+# nacteni polomeru zeme
+polomer = int(input("Zadej poloměr země v kilometrech. Když zadáš 0, bude počítáno se skutečným:"))
+if polomer == 0:
+    R = 6371.11*100000
+elif polomer < 0:
+    print("Špatně zadaný poloměr země.")
+    quit()
+else:
+    R = polomer*100000
+# vypocet zobrazeneho polomeru zeme dle meritka
 R = R/meritko
 # nacteni delky a sirky prepocitavaneho bodu
-m = float(input("Zadej zeměpisnou délku ve stupních:"))
-if abs(m) > 180:
+d = float(input("Zadej zeměpisnou délku ve stupních:"))
+if abs(d) > 180:
     print("Tento úhel nepřipadá v úvahu.")
     quit()
-n = float(input("Zadej zeměpisnou šířku ve stupních:"))
-if abs(n) > 90:
+s = float(input("Zadej zeměpisnou šířku ve stupních:"))
+if abs(s) > 90:
     print("Tento úhel nepřipadá v úvahu.")
     quit()
 # vypocet bodu a vykresleni site
 if zob == "Sa":
-    delka, sirka = Sa(m,n,R)
+    Sa(R)
+    delka, sirka = Sa_bod(d,s,R)
 if zob == "Lv":
-    delka, sirka = Lv(m,n,R)
+    Lv(R)
+    delka, sirka = Lv_bod(d,s,R)
 if zob == "Gn":
-    if n == 0:
+    if s == 0:
         print("Rovník není v gnomonické projekci definován.")
         quit()
-    delka, sirka = Gn(m,n,R)
+    Gn(R)
+    delka, sirka = Gn_bod(d,s,R)
 if zob == "Pt":
-    delka, sirka = Pt(m,n,R)
+    Pt(R)
+    delka, sirka = Pt_bod(d,s,R)
 print("Pro tvůj bod je souřadnice x:",delka,"a souřadnice y:",sirka)
+exitonclick()
