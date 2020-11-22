@@ -17,8 +17,8 @@ Pro jednotlivá zobrazení zadejte zkratky:
 * Ptolemaiovo zobrazení: `Pt`
 
 ### Měřítko
-Zadejte měříko, ve kterém se zobrazí výkres zobrazení. Například pro měřítko 1:5 000 000 zadejte `5000000`. 
-Doporučené měřítko pro zemi s opravdovým poloměrem je mezi 1:5 000 000 až 1:50 000 000. 
+Zadejte měříko, ve kterém se zobrazí výkres zobrazení. Například pro měřítko 1:500 000 000 zadejte `5000000000`. 
+Doporučené měřítko pro zemi s opravdovým poloměrem je mezi 1:250 000 000 až 1:500 000 000. 
 
 ### Poloměr země
 Program umožňuje modifikovat poloměr země/planety. Zadejte poloměr země v kilometrech. Pokud zadáte hodnotu `O`, je brán skutečný poloměr země - tj. 6371,11 km.
