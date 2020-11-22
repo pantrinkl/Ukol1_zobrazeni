@@ -187,11 +187,13 @@ sezzob = {"Sa","Lv","Gn","Pt","Po","Ma"}
 if zob not in sezzob:
     print("Neexistující zobrazení.")
     quit()
+
 # nacteni meritka a uprava polomeru dle meritka
 meritko = int(input("Zadej měřítko:"))
 if meritko <= 0:
     print("Špatně zadané měřítko")
     quit()
+
 # nacteni polomeru zeme
 polomer = int(input("Zadej poloměr země v kilometrech. Když zadáš 0, bude počítáno se skutečným:"))
 if polomer == 0:
@@ -201,8 +203,10 @@ elif polomer < 0:
     quit()
 else:
     R = polomer*100000
-# vypocet zobrazeneho polomeru zeme dle meritka
-R = R/meritko
+
+# vypocet zobrazeneho polomeru zeme dle meritka a velikosti pixelu
+R = R/meritko/0.03
+
 # nacteni delky a sirky prepocitavaneho bodu
 d = float(input("Zadej zeměpisnou délku ve stupních:"))
 if abs(d) > 180:
@@ -212,16 +216,18 @@ s = float(input("Zadej zeměpisnou šířku ve stupních:"))
 if abs(s) > 90:
     print("Tento úhel nepřipadá v úvahu.")
     quit()
+
 # zadani po kolika polednicich se bude vykreslovat
 pol = int(input("Zadej po kolika polednících se bude vykreslovat síť:"))
-if pol < 0 | pol > 360:
+if pol < 0 or pol > 360:
     print("Toto vykreslení nejde.")
     quit()
 elif pol == 0:
     pol = 10
+
 # zadani po kolika rovnobezkach se bude vykreslovat
 rov = int(input("Zadej po kolika rovnoběžkách se bude vykreslovat síť:"))
-if rov < 0 | rov > 180:
+if rov < 0 or rov > 180:
     print("Toto vykreslení nejde.")
     quit()
 elif rov > 80 and zob == "Gn":
@@ -229,6 +235,7 @@ elif rov > 80 and zob == "Gn":
     quit()
 elif rov == 0:
     rov = 10
+
 # vypocet bodu a vykresleni site dle zadani uzivatele
 if zob == "Sa":
     Sa(pol,rov,R)
